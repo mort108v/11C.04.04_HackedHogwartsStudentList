@@ -4,6 +4,18 @@
 
 // https://petlat kea.dk/2021/hogwarts/students.json
 
+let typedText = document.querySelector(".typewritten");
+let typed;
+
+let nthletter = 0;
+let typingSpeed = 300;
+
+const charOneSound = document.getElementById("typekey1");
+const charTwoSound = document.getElementById("typekey2");
+const spaceSound = document.getElementById("typespace");
+const lastKeySound = document.getElementById("typelast");
+const returnSound = document.getElementById("typereturn");
+
 window.addEventListener("DOMContentLoaded", start);
 
 let allStudents = [];
@@ -15,7 +27,13 @@ let prefects = [];
 const filterButtons = document.querySelectorAll(`[data-action="filter"]`);
 const sortButtons = document.querySelectorAll(`[data-action="sort"]`);
 const studentTemplates = document.querySelectorAll(`[data-field=firstname]`);
-const popupBox = document.querySelector(".popupbox");
+const popupBox = document.querySelector("#studentpop");
+const popupClosebutton = document.querySelector(".closebuttonpop");
+const schoolName = document.querySelector("#schoolname");
+const typewritten = document.querySelector(".hacked");
+
+schoolName.addEventListener("click", hackTheSystem);
+popupClosebutton.addEventListener("click", closePopUp);
 
 function start() {
     console.log("ready");
@@ -293,6 +311,8 @@ function displayPopUp(student) {
     popClone.querySelector("[data-field=gender]").textContent = student.gender;
     popClone.querySelector("[data-field=prefect]").dataset.prefect = student.prefect;
     popClone.querySelector("[data-field=inquis]").dataset.inquis = student.inquis;
+
+    popupBox.addEventListener
 }
 
 function displayStudent(student) {
@@ -543,5 +563,89 @@ function isAll(student) {
         return true;
     } else {
         return false;
+    }
+}
+
+// RANDOM BACKGROUND COLORS
+function random_bg_color() {
+    console.log(bgColor);
+
+    var r = Math.floor(Math.random() * 128);
+    var g = Math.floor(Math.random() * 256);
+    var b = Math.floor(Math.random() * 64);
+    var bgColor = `rgba(${r},${g},${b}, 0.65)`;
+
+    //
+    const listPointer = document.querySelectorAll('#list tbody tr:nth-child(odd) td');
+    listPointer.forEach((row) => {
+        row.style.background = bgColor;
+    });
+    //
+}
+
+function hackTheSystem() {
+    console.log("You've been Hacked");
+
+    // implement colorchange// input self in list// force non removal// disable inquis// change school name to typewriter new name// Make secret button// do timer on stuff
+    schoolName.classList.add("none");
+    typewritten.classList.remove("none");
+    hackstart;
+
+}
+
+function hackstart() {
+    console.log("init");
+
+    // Festch txt from HTML
+    typed = typedText.innerHTML;
+    // Clear fetched text
+    typedText.innerHTML = "";
+    //Start Loop function
+    typewriterLoop(typed);
+}
+
+function typewriterLoop() {
+    console.log(typed);
+    console.log("This letter is number (" + nthletter + ")");
+
+    if (nthletter < typed.length) {
+        console.log("The length of string is = " + typed.length);
+
+        // - Set textContent to substring of 0 to N
+        typedText.textContent += typed.charAt(nthletter);
+        // Imcrement N (++) 
+        nthletter++;
+        console.log(nthletter);
+
+        playSound(nthletter);
+
+        // Wait before calling loop again
+        setTimeout(typewriterLoop, typingSpeed);
+    }
+}
+
+
+function playSound() {
+    console.log("PlaySound");
+
+    let spaceBar = typed.indexOf(' ');
+    let lastLetter = typed.length;
+    console.log(lastLetter);
+
+    if (nthletter === lastLetter) {
+        lastKeySound.play();
+        setTimeout(typingSpeed);
+        returnSound.play();
+
+    } else if (nthletter == spaceBar) {
+        spaceSound.play();
+
+    } else {
+        let play = Math.random();
+        if (play < .5) {
+            charOneSound.play();
+        } else {
+            charTwoSound.play();
+        }
     }
 }

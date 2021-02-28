@@ -6,11 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="css/hogwarts.css">
+    <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
     <title>11C.04.04_HackedHogwartsStudentList</title>
 </head>
 
 <body>
-    <h1 id="schoolname">HOGWARTS STUDENT LIST</h1>
+    <h1 id="schoolname" class="">HOGWARTS STUDENT LIST</h1>
+
+    <div class="hacked none">
+        <h1 id="typewriter" class="typewritten">HACKWARTS SCHOOL OG DISPEAR AND DISHONOR!!</h1>
+        <div id="sounds">
+            <audio id="typekey1" src="audio/typekey1.mp3"></audio>
+            <audio id="typekey2" src="audio/typekey2.mp3"></audio>
+            <audio id="typespace" src="audio/typespace.mp3"></audio>
+            <audio id="typelast" src="audio/typelastkey.mp3"></audio>
+            <audio id="typereturn" src="audio/typecarriagereturn.mp3"></audio>
+        </div>
+    </div>
     <div id="filterbuttons">
         <button class="filter" data-action="filter" data-filter="*">ALL</button>
         <button class="filter" data-action="filter" data-filter="prefect">PREFECTS</button>
@@ -113,7 +125,7 @@
     </section>
     <template id="studentmodal">
         <tr>
-            <td data-field="image" data-image="false"><img type="image" src="" alt="" width="48" height="48" class="student-photo" onerror="this.onerror=null;this.src='studentphotos/anonymous.png';"></td>
+            <td data-field="image" data-image="true"><img type="image" src="" alt="" width="48" height="48" class="student-photo" onerror="this.onerror=null;this.src='studentphotos/anonymous.png';"></td>
             <td data-field="firstname">FIRSTNAME</td>
             <td data-field="house">HOUSE</td>
             <td data-field="gender">GENDER</td>

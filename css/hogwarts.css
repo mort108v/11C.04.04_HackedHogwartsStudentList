@@ -244,6 +244,18 @@ button.filter {
 
 /* STUDENT POPUP */
 
+.hacked.none {
+    display: none;
+}
+
+.typewritten {
+    font-family: 'Special Elite', cursive;
+}
+
+#schoolname.none {
+    display: none;
+}
+
 #studentpop {
     display: none;
 }
@@ -262,7 +274,7 @@ button.filter {
 }
 
 .popupcontent {
-    background-color: rgba(158, 22, 147, 0.835);
+    background-color: rgba(176, 45, 216, 0.835);
     color: whitesmoke;
     font-family: Arial, Helvetica, sans-serif;
     padding: 10vw 8vw 8vw 8vw;
