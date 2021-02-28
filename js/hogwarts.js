@@ -274,11 +274,16 @@ function displayList(students) {
 
 }
 
+function preparePopup(student) {
+    document.querySelector("#poppoppop tbody").innerHTML = "";
+    document.querySelector("#studentpop").classList.add("show");
+    displayPopUp(student);
+
+}
+
 function displayPopUp(student) {
     console.log("Displaying popup", student);
 
-    document.querySelector("#poppoppop tbody").innerHTML = "";
-    document.querySelector("#studentpop").classList.add("show");
 
     // create clone
     const popClone = document.querySelector("template#studentmodal").content.cloneNode(true);
@@ -312,7 +317,7 @@ function displayStudent(student) {
 
     clone.querySelector("[data-field=prefect]").addEventListener("click", clickSPrefect);
     clone.querySelector("[data-field=inquis]").addEventListener("click", clickInquis);
-    clone.querySelector(`[data-field=firstname]`).addEventListener("click", () => displayPopUp(student));
+    clone.querySelector(`[data-field=firstname]`).addEventListener("click", () => preparePopup(student));
 
 
     function clickSPrefect(student) {
