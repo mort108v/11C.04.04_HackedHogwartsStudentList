@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="css/hogwarts.css">
-    <title>Hogwarts Cleanup</title>
+    <title>11C.04.04_HackedHogwartsStudentList</title>
 </head>
 
 <body>
@@ -69,7 +69,7 @@
         <td data-field="muggle" data-muggle="false">MUGGLE</td> 
     </tr>
     </template>
-    <!-- Dialogs for handling too many winners -->
+    <!-- Dialogs for handling too many prefects -->
 
     <div id="onlytwoprefects" class="dialog">
         <div class="dialogcontent">
@@ -89,6 +89,38 @@
             <p><button data-action="removegen1">REMOVE</button> <span class="studentgen1" data-field="studentgender">NAME, the Student</span></p>
         </div>
     </div>
+
+    <section id="studentpop" class="popupbox">
+        <div class="popupcontent">
+            <table id="poppoppop">
+                <thead>
+                    <button class="closebuttonpop">close</button>
+                    <tr>
+                        <th>IMAGE</th>
+                        <th>FIRSTNAME</th>
+                        <th>HOUSE</th>
+                        <th>GENDER</th>
+                        <th>IS PREF⭐</th>
+                        <th>IS NAZI🏆</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <template id="studentmodal">
+        <tr>
+            <td data-field="image" data-image="false"><img type="image" src="" alt="" width="48" height="48" class="student-photo" onerror="this.onerror=null;this.src='studentphotos/anonymous.png';"></td>
+            <td data-field="firstname">FIRSTNAME</td>
+            <td data-field="house">HOUSE</td>
+            <td data-field="gender">GENDER</td>
+            <td data-field="prefect"data-prefect="false">⭐</td>
+            <td data-field="inquis" data-inquis="false">🏆</td>
+        </tr>
+    </template>
     <script src="js/hogwarts.js"></script>
 </body>
 

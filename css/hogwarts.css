@@ -240,3 +240,76 @@ button.filter {
 .dialog .closebutton:hover {
     color: black;
 }
+
+
+/* STUDENT POPUP */
+
+#studentpop {
+    display: none;
+}
+
+#studentpop.show {
+    z-index: 1;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, .4);
+}
+
+.popupcontent {
+    background-color: rgba(158, 22, 147, 0.835);
+    color: whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10vw 8vw 8vw 8vw;
+    position: relative;
+}
+
+#studentpop h1 {
+    margin: 0;
+    font-size: 130%;
+}
+
+#studentpop h2 {
+    margin: .5em 0;
+    font-size: 110%;
+    font-weight: lighter;
+}
+
+#studentpop .closebuttonpop {
+    -moz-appearance: none;
+    appearance: none;
+    position: absolute;
+    top: 4vw;
+    right: 4vw;
+    border: none;
+    background-color: transparent;
+    font-size: 90%;
+    color: darkgray;
+}
+
+#studentpop .closebuttonpop:hover {
+    color: black;
+}
+
+[data-field="firstname"]:hover {
+    filter: grayscale(100%);
+    cursor: pointer;
+}
+
+
+/* [data-field="image"]:hover {
+    filter: grayscale(100%);
+    display: block;
+    position: absolute;
+} */
+
+
+/* [data-field="firstname"]:hover {
+    filter: grayscale(0%);
+    cursor: pointer;
+} */

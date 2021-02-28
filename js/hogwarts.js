@@ -14,6 +14,8 @@ let prefects = [];
 
 const filterButtons = document.querySelectorAll(`[data-action="filter"]`);
 const sortButtons = document.querySelectorAll(`[data-action="sort"]`);
+const studentTemplates = document.querySelectorAll(`[data-field=firstname]`);
+const popupBox = document.querySelector(".popupbox");
 
 function start() {
     console.log("ready");
@@ -27,8 +29,18 @@ function start() {
         sortButton.addEventListener("click", clickSortButton);
     });
 
+    // studentTemplates.forEach((studentTemplate) => {
+    //     studentTemplate.addEventListener("click", displayPopUp);
+    //     console.log("Student clicked for popup");
+    // });
 
     loadJSON();
+}
+
+function closePopUp() {
+
+    document.querySelector("#studentpop").classList.remove("show");
+
 }
 
 function clickSortButton(sortButton) {
@@ -259,9 +271,27 @@ function displayList(students) {
 
     // build a new list
     students.forEach(displayStudent);
+
+}
+
+function displayPopUp(student) {
+    console.log("Displaying popup", student);
+
+    document.querySelector("#poppoppop tbody").innerHTML = "";
+    document.querySelector("#studentpop").classList.add("show");
+
+    // create clone
+    const popClone = document.querySelector("template#studentmodal").content.cloneNode(true);
+    popClone.querySelector("[data-field=image]").src = student.image;
+    popClone.querySelector("[data-field=firstname]").textContent = student.firstname;
+    popClone.querySelector("[data-field=house]").textContent = student.house;
+    popClone.querySelector("[data-field=gender]").textContent = student.gender;
+    popClone.querySelector("[data-field=prefect]").dataset.prefect = student.prefect;
+    popClone.querySelector("[data-field=inquis]").dataset.inquis = student.inquis;
 }
 
 function displayStudent(student) {
+
     // create clone
     const clone = document.querySelector("template#student").content.cloneNode(true);
 
@@ -282,8 +312,7 @@ function displayStudent(student) {
 
     clone.querySelector("[data-field=prefect]").addEventListener("click", clickSPrefect);
     clone.querySelector("[data-field=inquis]").addEventListener("click", clickInquis);
-
-
+    clone.querySelector(`[data-field=firstname]`).addEventListener("click", () => displayPopUp(student));
 
 
     function clickSPrefect(student) {
@@ -293,52 +322,56 @@ function displayStudent(student) {
         if (countPrefects(student) >= 2) {
             console.log("There are already 2 prefects");
 
-            // const closeButtonPrefect = document.querySelector(".closebutton-pre");
-            // closeButtonPrefect.addEventListener("click", hideDialogPrefects);
+            const closeButtonPrefect = document.querySelector(".closebutton-pre");
+            closeButtonPrefect.addEventListener("click", hideDialogPrefects);
 
             showDialogPrefects();
             inputPrefects();
 
             const removePrefect1 = document.querySelector("[data-action=removepre1]");
             const removePrefect2 = document.querySelector("[data-action=removepre2]");
-            removePrefect1.addEventListener("click", shiftPrefect1);
+            removePrefect1.addEventListener("click", popPrefect1);
             removePrefect2.addEventListener("click", popPrefect2);
-
-
-
-            function shiftPrefect1(student) {
-                console.log("popPrefect1");
-                const shiftedStudent = prefects.shift();
-                togglePrefect(shiftedStudent);
-                togglePrefect(student);
-                // prefects.push(student);
-                hideDialogPrefects();
-                displayList(filteredStudents);
-
-            }
-
-            function popPrefect2(student) {
-                console.log("popPrefect2");
-                const poppedStudent = prefects.pop();
-                togglePrefect(poppedStudent);
-                togglePrefect(student);
-                // prefects.push(student);
-                hideDialogPrefects();
-                displayList(filteredStudents);
-
-            }
-            // If same gender
-            // }
-            // else if (checkForSamePrefectGender(student) === true) {
-            //     // open dialog
-            //     document.querySelector(".closebutton-gen").addEventListener("click", hideDialogGender);
-
-
-            //     showDialogGender();
-
         } else togglePrefect(student);
+    }
+
+    function popPrefect1() {
+        console.log("popPrefect1");
+
+        prefects.push(student);
+        togglePrefect(student);
+        prefects.shift();
+
+        hideDialogPrefects();
+        displayList(filteredStudents);
 
     }
+
+    function popPrefect2(student) {
+        console.log("popPrefect2");
+        const popStudent2 = prefects[1];
+        togglePrefect(popStudent2);
+        togglePrefect(student);
+        // prefects.push(student);
+        hideDialogPrefects();
+        // displayList(filteredStudents);
+
+
+
+
+        // If same gender
+        // }
+        // else if (checkForSamePrefectGender(student) === true) {
+        //     // open dialog
+        //     document.querySelector(".closebutton-gen").addEventListener("click", hideDialogGender);
+
+
+        //     showDialogGender();
+
+
+
+    }
+
 
     // function checkForSamePrefectGender() {
     //     console.log("Checking gender", student);
@@ -403,8 +436,10 @@ function displayStudent(student) {
         console.log("togglePrefect", student);
         if (student.prefect === true) {
             student.prefect = false;
+            // prefects.shift(student);
         } else {
             student.prefect = true;
+            // prefects.shift(student);
         }
 
         displayList(filteredStudents);
@@ -423,7 +458,6 @@ function displayStudent(student) {
     // append clone to list
     document.querySelector("#list tbody").appendChild(clone);
 }
-
 
 function isSlytherin(student) {
     console.log("isSlytherin");
