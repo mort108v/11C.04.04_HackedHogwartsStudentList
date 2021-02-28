@@ -579,6 +579,8 @@ function random_bg_color() {
     const listPointer = document.querySelectorAll('#list tbody tr:nth-child(odd) td');
     listPointer.forEach((row) => {
         row.style.background = bgColor;
+
+        setTimeout(random_bg_color, 300);
     });
     //
 }
@@ -590,7 +592,7 @@ function hackTheSystem() {
     schoolName.classList.add("none");
     typewritten.classList.remove("none");
     hackstart;
-
+    random_bg_color()
 }
 
 function hackstart() {
